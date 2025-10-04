@@ -142,12 +142,12 @@ const MapView = ({ sensorData, defaultSensorLocations, bounds, onPointClick, cli
         })
         .filter(point => point !== null)
 
-      // Check if mobile1 within 50m - if so, use mobile1 data instead of interpolation
+      // Check if mobile1 within 100m - if so, use mobile1 data instead of interpolation
       const mobile = mobileSensors.find(([id]) => id.toLowerCase() === 'mobile1')
       if (mobile && knownPoints.length >= 2) {
         const [, m] = mobile
         const dist = krigingRef.current.calculateDistance(clickedPoint.lat, clickedPoint.lon, m.lat, m.lon)
-        if (dist <= 50) {
+        if (dist <= 100) {
           setClickedValue(m.ppm || 0)
         } else {
           krigingRef.current.autoAdjustParameters(knownPoints)
