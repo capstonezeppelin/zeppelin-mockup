@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Use relative paths for GitHub Pages
   build: {
-    outDir: 'dist',
+    // Output to repo-level docs/ so GitHub Pages can serve it from main
+    outDir: '../docs',
     emptyOutDir: true
   },
   server: {
